@@ -9,22 +9,24 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #F7F5F0;
-    --surface: #FFFFFF;
-    --border: #E2DED6;
-    --border-strong: #C8C3BA;
-    --text-primary: #1A1916;
-    --text-secondary: #6B6860;
-    --text-muted: #9C9A94;
-    --teal: #0F6E56;
-    --teal-light: #E1F5EE;
-    --teal-mid: #1D9E75;
-    --amber: #854F0B;
-    --amber-light: #FAEEDA;
-    --red: #A32D2D;
-    --red-light: #FCEBEB;
-    --accent: #032A4D;
+    --bg: #0D0D0D;
+    --bg2: #141414;
+    --surface: #1A1A1A;
+    --surface2: #222222;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --text-primary: #F0EDE8;
+    --text-secondary: #8A8680;
+    --text-muted: #4A4845;
+    --teal: #1D9E75;
+    --teal-light: rgba(29,158,117,0.12);
+    --teal-dim: rgba(29,158,117,0.25);
+    --amber: #EF9F27;
+    --amber-light: rgba(239,159,39,0.1);
+    --red: #E24B4A;
+    --red-light: rgba(226,75,74,0.1);
     --orange: #ED7032;
+    --orange-dim: rgba(237,112,50,0.15);
   }
 
   body {
@@ -32,86 +34,111 @@
     background: var(--bg);
     color: var(--text-primary);
     min-height: 100vh;
-    padding: 0;
   }
 
   header {
-    background: var(--accent);
-    padding: 24px 40px;
+    background: var(--bg2);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 40px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
-  header .brand {
+  .header-left { display: flex; align-items: center; gap: 20px; }
+
+  .vitanuts-logo {
+    height: 26px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.88;
+  }
+
+  .header-divider {
+    width: 0.5px;
+    height: 22px;
+    background: var(--border-strong);
+  }
+
+  .tiktok-badge {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 7px;
+    padding: 5px 11px;
+    background: var(--orange-dim);
+    border: 0.5px solid rgba(237,112,50,0.3);
+    border-radius: 6px;
   }
 
-  header .logo-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -0.3px;
-  }
+  .tiktok-badge svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-  header .logo-sub {
-    font-size: 12px;
-    color: rgba(255,255,255,0.5);
-    font-family: 'DM Mono', monospace;
-    margin-top: 1px;
-  }
-
-  header .badge {
+  .tiktok-badge span {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--orange);
-    border: 1px solid rgba(237,112,50,0.4);
-    padding: 4px 10px;
-    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
     letter-spacing: 0.5px;
   }
 
   .container {
-    max-width: 860px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 40px 24px 80px;
   }
 
   .page-title {
-    font-size: 13px;
+    font-size: 10px;
     font-family: 'DM Mono', monospace;
     color: var(--text-muted);
-    letter-spacing: 0.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .card {
     background: var(--surface);
     border: 0.5px solid var(--border);
     border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 16px;
+    padding: 24px 28px;
+    margin-bottom: 12px;
   }
 
   .card-title {
-    font-size: 11px;
+    font-size: 10px;
     font-family: 'DM Mono', monospace;
     color: var(--text-muted);
-    letter-spacing: 0.8px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-title::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
   }
 
   .product-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
   }
 
-  @media (min-width: 520px) {
+  @media (min-width: 500px) {
     .product-grid { grid-template-columns: repeat(4, 1fr); }
   }
 
@@ -119,182 +146,172 @@
     padding: 14px 12px;
     border: 0.5px solid var(--border);
     border-radius: 8px;
-    background: var(--bg);
+    background: var(--bg2);
     cursor: pointer;
     text-align: left;
     transition: all 0.15s;
     width: 100%;
   }
 
-  .prod-btn:hover {
-    border-color: var(--border-strong);
-    background: #f0ede8;
-  }
+  .prod-btn:hover { border-color: var(--border-strong); background: var(--surface2); }
+  .prod-btn.active { border: 1px solid var(--teal); background: var(--teal-light); }
 
-  .prod-btn.active {
-    border: 1.5px solid var(--teal-mid);
-    background: var(--teal-light);
-  }
+  .prod-btn .pname { font-size: 12px; font-weight: 500; color: var(--text-primary); margin-bottom: 5px; line-height: 1.3; }
+  .prod-btn .pprice { font-size: 13px; font-family: 'DM Mono', monospace; color: var(--teal); font-weight: 500; }
+  .prod-btn .pcmv { font-size: 10px; color: var(--text-muted); margin-top: 3px; font-family: 'DM Mono', monospace; }
 
-  .prod-btn .pname {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-
-  .prod-btn .pprice {
-    font-size: 12px;
-    font-family: 'DM Mono', monospace;
-    color: var(--text-secondary);
-  }
-
-  .prod-btn .pcmv {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 2px;
-  }
-
-  .slider-group {
-    margin-bottom: 20px;
-  }
-
-  .slider-header {
+  .param-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 0.5px solid var(--border);
   }
+  .param-row:last-child { border-bottom: none; }
 
-  .slider-label {
-    font-size: 13px;
-    color: var(--text-secondary);
-  }
+  .param-label { font-size: 13px; color: var(--text-secondary); flex: 1; }
 
-  .slider-value {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-primary);
-    background: var(--bg);
-    padding: 3px 10px;
-    border-radius: 4px;
-    border: 0.5px solid var(--border);
-  }
+  .param-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
   input[type=range] {
     -webkit-appearance: none;
-    width: 100%;
-    height: 3px;
-    background: var(--border);
+    width: 120px;
+    height: 2px;
+    background: var(--border-strong);
     border-radius: 2px;
     outline: none;
   }
 
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
-    background: var(--accent);
+    background: var(--text-primary);
     cursor: pointer;
-    border: 2px solid #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--border-strong);
   }
 
   input[type=range]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
+    width: 13px; height: 13px;
     border-radius: 50%;
-    background: var(--accent);
+    background: var(--text-primary);
     cursor: pointer;
-    border: 2px solid #fff;
+    border: 2px solid var(--bg);
+  }
+
+  .price-input-wrap { position: relative; display: flex; align-items: center; }
+
+  .price-prefix {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    position: absolute;
+    left: 9px;
+    pointer-events: none;
+  }
+
+  input[type=number].price-input {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--surface2);
+    border: 0.5px solid var(--border-strong);
+    border-radius: 6px;
+    padding: 7px 10px 7px 28px;
+    width: 95px;
+    outline: none;
+    -moz-appearance: textfield;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  input[type=number].price-input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 2px var(--teal-dim);
+  }
+
+  input[type=number].price-input::-webkit-outer-spin-button,
+  input[type=number].price-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  .val-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: 5px;
+    padding: 5px 9px;
+    min-width: 52px;
+    text-align: center;
   }
 
   .toggle-row {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    padding: 14px;
+    padding: 13px;
     background: var(--amber-light);
     border-radius: 8px;
-    border: 0.5px solid #FAC775;
-    margin-top: 4px;
+    border: 0.5px solid rgba(239,159,39,0.2);
+    margin-top: 8px;
   }
 
   .toggle-row input[type=checkbox] {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    margin-top: 1px;
-    flex-shrink: 0;
-    accent-color: var(--teal-mid);
+    width: 14px; height: 14px;
+    cursor: pointer; margin-top: 2px; flex-shrink: 0;
+    accent-color: var(--teal);
   }
 
-  .toggle-row label {
-    font-size: 13px;
-    color: var(--amber);
-    cursor: pointer;
-    line-height: 1.4;
-  }
+  .toggle-row label { font-size: 12px; color: var(--amber); cursor: pointer; line-height: 1.5; }
 
   .metrics-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 0;
+    gap: 8px;
   }
 
-  @media (min-width: 520px) {
+  @media (min-width: 500px) {
     .metrics-grid { grid-template-columns: repeat(4, 1fr); }
   }
 
   .metric-card {
-    background: var(--bg);
+    background: var(--bg2);
     border-radius: 8px;
     padding: 16px;
     border: 0.5px solid var(--border);
   }
 
   .metric-label {
-    font-size: 11px;
+    font-size: 10px;
     font-family: 'DM Mono', monospace;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
   }
 
   .metric-value {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
-    color: var(--text-primary);
     font-family: 'DM Mono', monospace;
     letter-spacing: -0.5px;
+    color: var(--text-primary);
   }
 
   .metric-value.success { color: var(--teal); }
-  .metric-value.danger { color: var(--red); }
-  .metric-value.warn { color: var(--amber); }
+  .metric-value.danger  { color: var(--red); }
+  .metric-value.warn    { color: var(--amber); }
 
-  .breakdown-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  .breakdown-table tr {
-    border-bottom: 0.5px solid var(--border);
-  }
-
-  .breakdown-table tr:last-child {
-    border-bottom: none;
-  }
+  .breakdown-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .breakdown-table tr { border-bottom: 0.5px solid var(--border); }
+  .breakdown-table tr:last-child { border-bottom: none; }
 
   .breakdown-table td {
     padding: 11px 4px;
     color: var(--text-secondary);
+    vertical-align: middle;
   }
 
   .breakdown-table td:last-child {
@@ -307,33 +324,30 @@
   .breakdown-table tr.total td {
     font-weight: 500;
     color: var(--text-primary);
-    background: var(--bg);
-    padding-top: 12px;
-    padding-bottom: 12px;
+    background: var(--surface2);
+    padding-top: 11px;
+    padding-bottom: 11px;
   }
 
   .breakdown-table tr.total td:first-child { border-radius: 6px 0 0 6px; padding-left: 10px; }
-  .breakdown-table tr.total td:last-child { border-radius: 0 6px 6px 0; padding-right: 10px; }
+  .breakdown-table tr.total td:last-child  { border-radius: 0 6px 6px 0; padding-right: 10px; }
 
-  .neg { color: var(--red) !important; }
+  .neg { color: var(--red)  !important; }
   .pos { color: var(--teal) !important; }
 
   .alert {
     padding: 12px 16px;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.5;
+    margin-top: 4px;
   }
 
-  .alert.warn { background: var(--amber-light); color: var(--amber); border: 0.5px solid #FAC775; }
-  .alert.danger { background: var(--red-light); color: var(--red); border: 0.5px solid #F09595; }
-  .alert.ok { background: var(--teal-light); color: var(--teal); border: 0.5px solid #5DCAA5; }
+  .alert.warn   { background: var(--amber-light); color: var(--amber); border: 0.5px solid rgba(239,159,39,0.25); }
+  .alert.danger { background: var(--red-light);   color: var(--red);   border: 0.5px solid rgba(226,75,74,0.25); }
+  .alert.ok     { background: var(--teal-light);  color: var(--teal);  border: 0.5px solid rgba(29,158,117,0.3); }
 
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 12px; }
 
   @media (min-width: 640px) {
     .two-col { grid-template-columns: 1fr 1fr; }
@@ -341,23 +355,36 @@
 
   footer {
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     font-family: 'DM Mono', monospace;
     color: var(--text-muted);
-    padding: 24px;
+    padding: 28px 24px;
+    border-top: 0.5px solid var(--border);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="brand">
-    <div>
-      <div class="logo-text">Vitanuts</div>
-      <div class="logo-sub">Calculadora de Margem</div>
+  <div class="header-left">
+    <img
+      class="vitanuts-logo"
+      src="https://vitanuts.com.br/cdn/shop/files/Vitanuts_Logo-horizontal-04.png?v=1770149405&width=130"
+      alt="Vitanuts"
+      onerror="this.style.display='none'; document.getElementById('vitanuts-fallback').style.display='block';"
+    >
+    <span id="vitanuts-fallback" style="display:none; font-size:15px; font-weight:600; color:#F0EDE8; letter-spacing:-0.3px;">Vitanuts</span>
+    <div class="header-divider"></div>
+    <div class="tiktok-badge">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z" fill="#ED7032"/>
+      </svg>
+      <span>TikTok Shop</span>
     </div>
   </div>
-  <div class="badge">TikTok Shop</div>
+  <span class="header-tag">uso interno · vitanuts</span>
 </header>
 
 <div class="container">
@@ -370,35 +397,37 @@
 
   <div class="two-col">
     <div class="card">
-      <p class="card-title">02 — Parâmetros de venda</p>
+      <p class="card-title">02 — Parâmetros</p>
 
-      <div class="slider-group">
-        <div class="slider-header">
-          <span class="slider-label">Preço de venda no TikTok</span>
-          <span class="slider-value" id="precoVal">—</span>
+      <div class="param-row">
+        <span class="param-label">Preço de venda</span>
+        <div class="param-right">
+          <div class="price-input-wrap">
+            <span class="price-prefix">R$</span>
+            <input type="number" class="price-input" id="precoInput" min="10" max="300" step="0.50">
+          </div>
         </div>
-        <input type="range" id="precoSlider" min="10" max="120" step="0.5">
       </div>
 
-      <div class="slider-group">
-        <div class="slider-header">
-          <span class="slider-label">Desconto do vendedor</span>
-          <span class="slider-value" id="descontoVal">R$ 0</span>
+      <div class="param-row">
+        <span class="param-label">Desconto do vendedor</span>
+        <div class="param-right">
+          <input type="range" id="descontoSlider" min="0" max="40" step="1" value="0">
+          <span class="val-tag" id="descontoVal">R$ 0</span>
         </div>
-        <input type="range" id="descontoSlider" min="0" max="40" step="1" value="0">
       </div>
 
-      <div class="slider-group">
-        <div class="slider-header">
-          <span class="slider-label">Comissão de afiliado</span>
-          <span class="slider-value" id="afiliadoVal">10%</span>
+      <div class="param-row">
+        <span class="param-label">Comissão de afiliado</span>
+        <div class="param-right">
+          <input type="range" id="afiliadoSlider" min="0" max="30" step="1" value="10">
+          <span class="val-tag" id="afiliadoVal">10%</span>
         </div>
-        <input type="range" id="afiliadoSlider" min="0" max="30" step="1" value="10">
       </div>
 
       <div class="toggle-row">
         <input type="checkbox" id="zerarComissao">
-        <label for="zerarComissao">Ativar incentivo 0% de comissão da plataforma (primeiros 60 dias / até R$ 17.000)</label>
+        <label for="zerarComissao">Incentivo 0% comissão plataforma — primeiros 60 dias / até R$ 17.000</label>
       </div>
     </div>
 
@@ -413,33 +442,37 @@
     <div class="metrics-grid" id="metrics"></div>
   </div>
 
-  <div id="alertBox" style="margin-top: 4px;"></div>
-
+  <div id="alertBox"></div>
 </div>
 
-<footer>Vitanuts × TikTok Shop — uso interno</footer>
+<footer>vitanuts × tiktok shop &nbsp;·&nbsp; calculadora de margem &nbsp;·&nbsp; uso interno</footer>
 
 <script>
 const produtos = [
-  { nome: "Choc. Branco", preco: 35.90, cmv: 9 },
-  { nome: "Choc. Crocante", preco: 29.90, cmv: 9 },
-  { nome: "Cookies & Cream", preco: 35.90, cmv: 9 },
-  { nome: "Pistache", preco: 57.45, cmv: 20 },
+  { nome: "Choc. Branco",    preco: 35.90, cmv: 9  },
+  { nome: "Choc. Crocante",  preco: 29.90, cmv: 9  },
+  { nome: "Cookies & Cream", preco: 35.90, cmv: 9  },
+  { nome: "Pistache",        preco: 57.45, cmv: 20 },
 ];
 
 let selected = 0;
 
-const grid = document.getElementById("prodGrid");
-const precoSlider = document.getElementById("precoSlider");
-const precoVal = document.getElementById("precoVal");
+const grid           = document.getElementById("prodGrid");
+const precoInput     = document.getElementById("precoInput");
 const descontoSlider = document.getElementById("descontoSlider");
-const descontoVal = document.getElementById("descontoVal");
+const descontoVal    = document.getElementById("descontoVal");
 const afiliadoSlider = document.getElementById("afiliadoSlider");
-const afiliadoVal = document.getElementById("afiliadoVal");
-const zerarComissao = document.getElementById("zerarComissao");
+const afiliadoVal    = document.getElementById("afiliadoVal");
+const zerarComissao  = document.getElementById("zerarComissao");
 
-function fmt(v) { return "R$ " + v.toFixed(2).replace(".", ","); }
+function fmt(v)    { return "R$ " + v.toFixed(2).replace(".", ","); }
 function fmtPct(v) { return v.toFixed(1).replace(".", ",") + "%"; }
+
+function colorClass(v, good, warn) {
+  if (v >= good) return "success";
+  if (v >= warn) return "warn";
+  return "danger";
+}
 
 function renderButtons() {
   grid.innerHTML = "";
@@ -455,40 +488,31 @@ function renderButtons() {
 function selectProduct() {
   renderButtons();
   const p = produtos[selected];
-  precoSlider.min = Math.max(10, p.cmv + 5);
-  precoSlider.max = Math.round(p.preco * 2.5);
-  precoSlider.value = p.preco;
-  descontoSlider.max = Math.round(p.preco * 0.5);
+  precoInput.value = p.preco.toFixed(2);
+  descontoSlider.max   = Math.round(p.preco * 0.5);
   descontoSlider.value = 0;
   update();
 }
 
-function colorClass(v, goodThreshold, warnThreshold) {
-  if (v >= goodThreshold) return "success";
-  if (v >= warnThreshold) return "warn";
-  return "danger";
-}
-
 function update() {
-  const p = produtos[selected];
-  const preco = parseFloat(precoSlider.value);
-  const desconto = parseFloat(descontoSlider.value);
+  const p           = produtos[selected];
+  const preco       = Math.max(parseFloat(precoInput.value) || 0, 0);
+  const desconto    = parseFloat(descontoSlider.value);
   const afiliadoPct = parseFloat(afiliadoSlider.value) / 100;
   const semComissao = zerarComissao.checked;
 
-  precoVal.textContent = fmt(preco);
   descontoVal.textContent = fmt(desconto);
   afiliadoVal.textContent = Math.round(afiliadoSlider.value) + "%";
 
-  const baseComissao = preco - desconto;
-  const taxaPlataforma = semComissao ? 0 : baseComissao * 0.06;
-  const tarifaItem = 4;
+  const baseComissao     = Math.max(preco - desconto, 0);
+  const taxaPlataforma   = semComissao ? 0 : baseComissao * 0.06;
+  const tarifaItem       = preco > 0 ? 4 : 0;
   const comissaoAfiliado = preco * afiliadoPct;
-  const totalCustos = desconto + taxaPlataforma + tarifaItem + comissaoAfiliado;
-  const receitaLiquida = preco - totalCustos;
-  const lucro = receitaLiquida - p.cmv;
-  const margem = (lucro / preco) * 100;
-  const roi = p.cmv > 0 ? (lucro / p.cmv) * 100 : 0;
+  const totalCustos      = desconto + taxaPlataforma + tarifaItem + comissaoAfiliado;
+  const receitaLiquida   = preco - totalCustos;
+  const lucro            = receitaLiquida - p.cmv;
+  const margem           = preco > 0 ? (lucro / preco) * 100 : 0;
+  const roi              = p.cmv > 0 ? (lucro / p.cmv) * 100 : 0;
 
   document.getElementById("metrics").innerHTML = `
     <div class="metric-card">
@@ -512,9 +536,9 @@ function update() {
   document.getElementById("breakdown").innerHTML = `
     <tr><td>Preço de venda</td><td class="pos">${fmt(preco)}</td></tr>
     <tr><td>(-) Desconto do vendedor</td><td class="neg">- ${fmt(desconto)}</td></tr>
-    <tr><td>(-) Comissão da plataforma ${semComissao ? "(0% — incentivo)" : "(6%)"}</td><td class="neg">- ${fmt(taxaPlataforma)}</td></tr>
+    <tr><td>(-) Comissão plataforma ${semComissao ? "(0% — incentivo)" : "(6%)"}</td><td class="neg">- ${fmt(taxaPlataforma)}</td></tr>
     <tr><td>(-) Tarifa por item vendido</td><td class="neg">- ${fmt(tarifaItem)}</td></tr>
-    <tr><td>(-) Comissão de afiliado (${Math.round(afiliadoSlider.value)}%)</td><td class="neg">- ${fmt(comissaoAfiliado)}</td></tr>
+    <tr><td>(-) Comissão afiliado (${Math.round(afiliadoSlider.value)}%)</td><td class="neg">- ${fmt(comissaoAfiliado)}</td></tr>
     <tr class="total"><td>= Receita líquida</td><td class="${receitaLiquida < 0 ? 'neg' : 'pos'}">${fmt(receitaLiquida)}</td></tr>
     <tr><td>(-) CMV</td><td class="neg">- ${fmt(p.cmv)}</td></tr>
     <tr class="total"><td>= Lucro</td><td class="${lucro < 0 ? 'neg' : 'pos'}">${fmt(lucro)}</td></tr>
@@ -530,7 +554,8 @@ function update() {
   }
 }
 
-precoSlider.oninput = update;
+precoInput.oninput     = update;
+precoInput.onchange    = update;
 descontoSlider.oninput = update;
 afiliadoSlider.oninput = update;
 zerarComissao.onchange = update;
