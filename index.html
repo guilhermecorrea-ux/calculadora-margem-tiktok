@@ -455,6 +455,8 @@ const produtos = [
   { nome: "Pistache",        preco: 57.45, cmv: 20 },
 ];
 
+const IMPOSTO = 0.15;
+
 let selected = 0;
 
 const grid           = document.getElementById("prodGrid");
@@ -505,10 +507,11 @@ function update() {
   afiliadoVal.textContent = Math.round(afiliadoSlider.value) + "%";
 
   const baseComissao     = Math.max(preco - desconto, 0);
+  const imposto          = baseComissao * IMPOSTO;
   const taxaPlataforma   = semComissao ? 0 : baseComissao * 0.06;
   const tarifaItem       = preco > 0 ? 4 : 0;
   const comissaoAfiliado = preco * afiliadoPct;
-  const totalCustos      = desconto + taxaPlataforma + tarifaItem + comissaoAfiliado;
+  const totalCustos      = imposto + desconto + taxaPlataforma + tarifaItem + comissaoAfiliado;
   const receitaLiquida   = preco - totalCustos;
   const lucro            = receitaLiquida - p.cmv;
   const margem           = preco > 0 ? (lucro / preco) * 100 : 0;
@@ -536,6 +539,7 @@ function update() {
   document.getElementById("breakdown").innerHTML = `
     <tr><td>Preço de venda</td><td class="pos">${fmt(preco)}</td></tr>
     <tr><td>(-) Desconto do vendedor</td><td class="neg">- ${fmt(desconto)}</td></tr>
+    <tr><td>(-) Imposto 15% (sobre preço - desconto)</td><td class="neg">- ${fmt(imposto)}</td></tr>
     <tr><td>(-) Comissão plataforma ${semComissao ? "(0% — incentivo)" : "(6%)"}</td><td class="neg">- ${fmt(taxaPlataforma)}</td></tr>
     <tr><td>(-) Tarifa por item vendido</td><td class="neg">- ${fmt(tarifaItem)}</td></tr>
     <tr><td>(-) Comissão afiliado (${Math.round(afiliadoSlider.value)}%)</td><td class="neg">- ${fmt(comissaoAfiliado)}</td></tr>
